@@ -1,9 +1,10 @@
 package com.dba.SpringBootWeb;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+// import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 // import jakarta.servlet.http.HttpSession;
 
@@ -31,14 +32,27 @@ public class HomeController {
     // }
 
     // SPRING BOOT version with model object instead of http session
+    // @GetMapping("add")
+    // public String add(@RequestParam int num1, @RequestParam int num2, Model
+    // model) {
+
+    // int result = num1 + num2;
+
+    // model.addAttribute("result", result);
+
+    // return "result";
+    // }
+
+    // version with model view object
     @GetMapping("add")
-    public String add(@RequestParam int num1, @RequestParam int num2, Model model) {
+    public ModelAndView add(@RequestParam int num1, @RequestParam int num2, ModelAndView mv) {
 
         int result = num1 + num2;
 
-        model.addAttribute("result", result);
+        mv.addObject("result", result);
+        mv.setViewName("result");
 
-        return "result";
+        return mv;
     }
 
 }
