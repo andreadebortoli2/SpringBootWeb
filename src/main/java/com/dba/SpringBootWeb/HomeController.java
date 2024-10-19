@@ -1,20 +1,21 @@
 package com.dba.SpringBootWeb;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.http.HttpSession;
+// import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "index.jsp";
+        return "index";
     }
 
-    // SERVLET WAY
+    // SERVLET WAY + with session
     // @GetMapping("add")
     // public String add(HttpServletRequest req, HttpSession session) {
 
@@ -23,21 +24,21 @@ public class HomeController {
 
     // int result = num1 + num2;
 
-    // // put data in the session
+    // put data in the session
     // session.setAttribute("result", result);
 
     // return "result.jsp";
     // }
 
-    // SPRING BOOT version
+    // SPRING BOOT version with model object instead of http session
     @GetMapping("add")
-    public String add(@RequestParam int num1, @RequestParam int num2, HttpSession session) {
+    public String add(@RequestParam int num1, @RequestParam int num2, Model model) {
 
         int result = num1 + num2;
 
-        session.setAttribute("result", result);
+        model.addAttribute("result", result);
 
-        return "result.jsp";
+        return "result";
     }
 
 }
