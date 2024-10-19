@@ -3,6 +3,7 @@ package com.dba.SpringBootWeb;
 import org.springframework.stereotype.Controller;
 // import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -55,4 +56,31 @@ public class HomeController {
         return mv;
     }
 
+    // @GetMapping("addUser")
+    // public ModelAndView addUser(@RequestParam int userId, @RequestParam String
+    // userName, ModelAndView mv) {
+
+    // User user = new User();
+    // user.setId(userId);
+    // user.setName(userName);
+
+    // mv.addObject("user", user);
+    // mv.setViewName("newUser");
+
+    // return mv;
+    // }
+
+    // with model attribute
+    @GetMapping("addUser")
+    public String addUser(User user) { // @ModelAttribute is an optional keyword
+                                       // in case i want to change hte object
+                                       // name
+        return "newUser";
+    }
+
+    // ModelAttribute to pass data to the view
+    @ModelAttribute("greet")
+    public String greeString() {
+        return "Welcome!";
+    }
 }
